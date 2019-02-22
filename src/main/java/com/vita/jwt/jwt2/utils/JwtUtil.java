@@ -14,7 +14,9 @@ import javax.crypto.spec.SecretKeySpec;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import org.springframework.stereotype.Component;
 
+@Component
 public class JwtUtil {
   /**
    * 由字符串生成加密key
@@ -35,12 +37,11 @@ public class JwtUtil {
 
   /**
    * 创建jwt
-   * @param ttlMillis 过期时间
    * @return
    * @throws Exception
    */
-  public String createJWT(long ttlMillis) throws Exception {
-    User user = new User("1","user","pwd");
+  public String createJWT(User user) throws Exception {
+    long ttlMillis = Constant.JWT_TTL;
     // 指定签名的时候使用的签名算法，也就是header那部分，jjwt已经将这部分内容封装好了。
     SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
     // 生成JWT的时间
@@ -92,12 +93,12 @@ public class JwtUtil {
 
   public static void main(String[] args) {
 
-    User user = new User("tingfeng", "bulingbuling", "1056856191");
+    User user = new User("1", "user", "pwd");
     String subject = new Gson().toJson(user);
 
     try {
       JwtUtil util = new JwtUtil();
-      String jwt = util.createJWT(Constant.JWT_TTL);
+      String jwt = util.createJWT(user);
       System.out.println("JWT：" + jwt);
 
       System.out.println("\n解密\n");

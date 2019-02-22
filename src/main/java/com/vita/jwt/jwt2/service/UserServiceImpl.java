@@ -1,6 +1,6 @@
-package com.vita.jwt.jwt1.service;
+package com.vita.jwt.jwt2.service;
 
-import com.vita.jwt.jwt1.entity.User;
+import com.vita.jwt.jwt2.entity.User;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.stereotype.Service;

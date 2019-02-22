@@ -1,4 +1,4 @@
-package com.vita.jwt.jwt1.annotation;
+package com.vita.jwt.jwt2.annotation;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

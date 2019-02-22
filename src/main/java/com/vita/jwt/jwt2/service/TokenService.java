@@ -1,8 +1,8 @@
-package com.vita.jwt.jwt1.service;
+package com.vita.jwt.jwt2.service;
 
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
-import com.vita.jwt.jwt1.entity.User;
+import com.vita.jwt.jwt2.entity.User;
 import org.springframework.stereotype.Service;
 
 @Service
