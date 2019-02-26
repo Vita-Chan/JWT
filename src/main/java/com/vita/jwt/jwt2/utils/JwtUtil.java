@@ -18,10 +18,9 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class JwtUtil {
+
   /**
    * 由字符串生成加密key
-   *
-   * @return
    */
   public SecretKey generalKey() {
     String stringKey = Constant.JWT_SECRET;
@@ -37,8 +36,6 @@ public class JwtUtil {
 
   /**
    * 创建jwt
-   * @return
-   * @throws Exception
    */
   public String createJWT(User user) throws Exception {
     long ttlMillis = Constant.JWT_TTL;
@@ -47,6 +44,12 @@ public class JwtUtil {
     // 生成JWT的时间
     long nowMillis = System.currentTimeMillis();
     Date now = new Date(nowMillis);
+
+    //生成 jwt的过期时间
+    long expMillis = nowMillis + ttlMillis;
+    Date exp = new Date(expMillis);
+    //生成jwt的有效时间
+    long exptime = exp.getTime();
 
     // 创建payload的私有声明（根据特定的业务需要添加，如果要拿这个做验证，一般是需要和jwt的接收方提前沟通好验证方式的）
     Map<String, Object> claims = new HashMap<>();
@@ -70,8 +73,6 @@ public class JwtUtil {
 
     // 设置过期时间
     if (ttlMillis >= 0) {
-      long expMillis = nowMillis + ttlMillis;
-      Date exp = new Date(expMillis);
       builder.setExpiration(exp);
     }
     return builder.compact();
@@ -79,9 +80,6 @@ public class JwtUtil {
 
   /**
    * 解密jwt
-   * @param jwt
-   * @return
-   * @throws Exception
    */
   public Claims parseJWT(String jwt) throws Exception {
     SecretKey key = generalKey();           //签名秘钥，和生成的签名的秘钥一模一样
@@ -106,7 +104,7 @@ public class JwtUtil {
       Claims c = util.parseJWT(jwt);
       System.out.println(c.getId());
       System.out.println(c.getIssuedAt());
-      User user1 = new Gson().fromJson(c.getSubject(),User.class);
+      User user1 = new Gson().fromJson(c.getSubject(), User.class);
       System.out.println(c.getIssuer());
     } catch (Exception e) {
       e.printStackTrace();

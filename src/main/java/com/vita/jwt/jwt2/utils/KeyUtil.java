@@ -6,10 +6,9 @@ import javax.crypto.spec.SecretKeySpec;
 import org.apache.tomcat.util.codec.binary.Base64;
 
 public class KeyUtil {
+
   /**
    * 由字符串生成加密key
-   *
-   * @return
    */
   public SecretKey generalKey() {
     String stringKey = Constant.JWT_SECRET;

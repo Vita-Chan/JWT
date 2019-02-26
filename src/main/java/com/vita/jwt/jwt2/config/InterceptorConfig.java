@@ -18,6 +18,7 @@ public class InterceptorConfig implements WebMvcConfigurer {
         .addPathPatterns("/**")
         .excludePathPatterns("/api/login");    //不拦截登录
   }
+
   @Bean
   public AuthenticationInterceptor authenticationInterceptor() {
     return new AuthenticationInterceptor();

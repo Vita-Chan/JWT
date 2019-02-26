@@ -1,4 +1,5 @@
 package com.vita.jwt.jwt2.annotation;
+
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
@@ -7,5 +8,6 @@ import java.lang.annotation.RetentionPolicy;
  */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface PassToken {
+
   boolean required() default true;
 }
